@@ -4,8 +4,9 @@
  * Start here...
  */
 
-#include <iostream>
+#include <spdlog/spdlog.h>
+
 int main(int argc, char** argv) {
-    std::cout << "radi";
+    spdlog::info("Radi...");
     return 0;
 }
