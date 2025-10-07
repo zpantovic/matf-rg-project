@@ -2,7 +2,7 @@
   "resources": {
     "models": {
       "babyyoda3": {
-        "path": "babyyoda3/YODABABY.obj",
+        "path": "babyoda3/YODABABY.obj",
         "flip_uvs": false
       },
       "island1": {
