@@ -1,6 +1,18 @@
 {
   "resources": {
     "models": {
+      "babyyoda3": {
+        "path": "babyyoda3/YODABABY.obj",
+        "flip_uvs": false
+      },
+      "island1": {
+        "path": "island1/island.obj",
+        "flip_uvs": false
+      },
+      "svbrod1": {
+        "path": "svbrod1/ufo.obj",
+        "flip_uvs": false
+      }
     }
   },
   "window": {
