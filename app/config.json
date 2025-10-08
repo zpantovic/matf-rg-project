@@ -16,8 +16,8 @@
     }
   },
   "window": {
-    "height": 1200,
+    "height": 900,
     "title": "Hello, window!",
-    "width": 1600
+    "width": 600
   }
 }

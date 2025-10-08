@@ -62,9 +62,17 @@ namespace app {
 
         babyoda->draw(shader);
     }
+
+    void MainController::draw_skybox() {
+        auto shader = engine::core::Controller::get<engine::resources::ResourcesController>()->shader("skybox");
+        auto skybox_cube = engine::core::Controller::get<engine::resources::ResourcesController>()->skybox("skybox");
+        engine::core::Controller::get<engine::graphics::GraphicsController>()->draw_skybox(shader, skybox_cube);
+    }
+
     void MainController::draw() {
         //clear buffers color buffer i depth buffer
         draw_babyoda();
+        draw_skybox();
         //swapBuffers, kako bi sve sto smo nacrtali poslali na ekran.
     }
     void MainController::end_draw() {

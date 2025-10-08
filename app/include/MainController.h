@@ -13,6 +13,7 @@ namespace app {
         bool loop() override;
         void begin_draw() override;
         void draw_babyoda();
+        void draw_skybox();
         void draw() override;
         void end_draw() override;
         void update_camera();
