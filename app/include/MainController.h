@@ -4,10 +4,15 @@
 
 #ifndef MATF_RG_PROJECT_MAINCONTROLLER_H
 #define MATF_RG_PROJECT_MAINCONTROLLER_H
+#include "engine/core/Controller.hpp"
 
+namespace app {
+    class MainController : public engine::core::Controller {
+        void initialize() override;
+        bool loop() override;
 
-class MainController {
-};
+    };
+}
 
 
 #endif//MATF_RG_PROJECT_MAINCONTROLLER_H
