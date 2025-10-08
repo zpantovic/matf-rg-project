@@ -1,7 +1,7 @@
 {
   "resources": {
     "models": {
-      "babyyoda3": {
+      "babyoda3": {
         "path": "babyoda3/YODABABY.obj",
         "flip_uvs": false
       },
