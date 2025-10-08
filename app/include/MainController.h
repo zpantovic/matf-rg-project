@@ -15,6 +15,8 @@ namespace app {
         void draw_babyoda();
         void draw() override;
         void end_draw() override;
+        void update_camera();
+        void update() override;
     };
 }
 
