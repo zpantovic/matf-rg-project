@@ -18,9 +18,9 @@ public:
     void on_mouse_move(engine::platform::MousePosition position) override;
 };
 
-static glm::vec3 islandPosition = glm::vec3(0.0f, -30.0f, 0.0f);
-static glm::vec3 yodaPosition = glm::vec3(500.0f, 250.0f, 0.0f);
-static glm::vec3 shipPosition = glm::vec3(2100.0f, 700.0f, 0.0f);
+static glm::vec3 island_position = glm::vec3(0.0f, -30.0f, 0.0f);
+static glm::vec3 yoda_position = island_position + glm::vec3(80.0f, 15.6f, 0.0f);
+static glm::vec3 ship_position = glm::vec3(2100.0f, 700.0f, 0.0f);
 
 void MainPlatformEventObserver::on_mouse_move(engine::platform::MousePosition position) {
     auto camera = engine::core::Controller::get<engine::graphics::GraphicsController>()->camera();
@@ -67,7 +67,7 @@ void MainController::draw_babyoda() {
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, islandPosition + glm::vec3(80.0f, 15.6f, 0.0f));
+    model = glm::translate(model, yoda_position);
     model = glm::scale(model, glm::vec3(5));
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
     float rotating = 1.5f * platform->frame_time().current;
@@ -99,7 +99,7 @@ void MainController::draw_island() {
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, islandPosition);
+    model = glm::translate(model, island_position);
     model = glm::scale(model, glm::vec3(0.04f));
     shader->set_mat4("model", model);
 
@@ -118,7 +118,7 @@ void MainController::draw_svbrod() {
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, shipPosition);
+    model = glm::translate(model, ship_position);
     model = glm::scale(model, glm::vec3(100.0f));
     shader->set_mat4("model", model);
 
