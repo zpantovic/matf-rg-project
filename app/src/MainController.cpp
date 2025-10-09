@@ -54,6 +54,15 @@ void MainController::draw_babyoda() {
     auto shader = resources->shader("basic");
     shader->use();
 
+    shader->set_vec3("pointLight.position", glm::vec3(180.0f, 10.6f, 0.0f));
+    shader->set_vec3("pointLight.ambient", glm::vec3(0.1f));
+    shader->set_vec3("pointLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("pointLight.specular", glm::vec3(1.0f));
+    shader->set_float("pointLight.constant", 0.36f);
+    shader->set_float("pointLight.linear", 0.0003f);
+    shader->set_float("pointLight.quadratic", 0.000005f);
+    shader->set_float("material.shininess", 32.0f);
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
@@ -76,6 +85,15 @@ void MainController::draw_island() {
     auto island = resources->model("island1");
     auto shader = resources->shader("basic");
     shader->use();
+
+    shader->set_vec3("pointLight.position", glm::vec3(180.0f, 10.6f, 0.0f));
+    shader->set_vec3("pointLight.ambient", glm::vec3(0.1f));
+    shader->set_vec3("pointLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("pointLight.specular", glm::vec3(1.0f));
+    shader->set_float("pointLight.constant", 0.36f);
+    shader->set_float("pointLight.linear", 0.0003f);
+    shader->set_float("pointLight.quadratic", 0.000005f);
+    shader->set_float("material.shininess", 32.0f);
 
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
