@@ -20,7 +20,7 @@ public:
 
 static glm::vec3 island_position = glm::vec3(0.0f, -30.0f, 0.0f);
 static glm::vec3 yoda_position = island_position + glm::vec3(80.0f, 15.6f, 0.0f);
-static glm::vec3 ship_position = glm::vec3(2100.0f, 700.0f, 0.0f);
+static glm::vec3 ship_position = yoda_position + glm::vec3(0.0f, 22.0f, 0.0f);
 
 void MainPlatformEventObserver::on_mouse_move(engine::platform::MousePosition position) {
     auto camera = engine::core::Controller::get<engine::graphics::GraphicsController>()->camera();
@@ -114,12 +114,22 @@ void MainController::draw_svbrod() {
     auto shader = resources->shader("basic");
     shader->use();
 
+    shader->set_vec3("pointLight.position", ship_position + glm::vec3(0.0f, -5.0f, 0.0f));
+    shader->set_vec3("pointLight.ambient",  glm::vec3(0.05f));
+    shader->set_vec3("pointLight.diffuse",  glm::vec3(1.0f, 0.9f, 0.7f));
+    shader->set_vec3("pointLight.specular", glm::vec3(1.0f, 0.9f, 0.8f));
+    shader->set_float("pointLight.constant", 1.0f);
+    shader->set_float("pointLight.linear", 0.0001f);
+    shader->set_float("pointLight.quadratic", 0.000001f);
+    shader->set_float("material.shininess", 64.0f);
+
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, ship_position);
-    model = glm::scale(model, glm::vec3(100.0f));
+    model = glm::scale(model, glm::vec3(4.0f));
     shader->set_mat4("model", model);
 
     svbrod->draw(shader);
