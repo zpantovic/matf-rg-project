@@ -4,6 +4,7 @@
 
 #include "MainController.h"
 
+#include "GUIController.hpp"
 #include "engine/core/Controller.hpp"
 #include "engine/graphics/GraphicsController.hpp"
 #include "engine/graphics/OpenGL.hpp"
@@ -154,7 +155,10 @@ void MainController::end_draw() {
     platform->swap_buffers();
 }
 void MainController::update_camera() {
-
+    auto gui = engine::core::Controller::get<app::GUIController>();
+    if (gui->is_enabled()) {
+        return;
+    }
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
     auto camera = engine::core::Controller::get<engine::graphics::GraphicsController>()->camera();
     float dt = platform->dt();
