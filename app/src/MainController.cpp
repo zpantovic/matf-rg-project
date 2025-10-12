@@ -1,17 +1,17 @@
 //
-// Created by ndobrosavljevic on 7.10.25..
+// Created by zpantovic on 7.10.25..
 //
 
 #include "MainController.h"
 
 #include "GUIController.hpp"
 #include "engine/core/Controller.hpp"
+#include "engine/graphics/BloomController.h"
 #include "engine/graphics/GraphicsController.hpp"
 #include "engine/graphics/OpenGL.hpp"
 #include "engine/platform/PlatformController.hpp"
 #include "engine/resources/ResourcesController.hpp"
 #include "spdlog/spdlog.h"
-#include "engine/graphics/BloomController.h"
 
 namespace app {
 engine::graphics::BloomController *bloom_controller;
@@ -93,6 +93,7 @@ void MainController::draw_babyoda() {
 
     babyoda->draw(shader);
 }
+
 void MainController::draw_island() {
 
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
@@ -131,8 +132,8 @@ void MainController::draw_svbrod() {
     shader->use();
 
     shader->set_vec3("pointLight.position", ship_position + glm::vec3(0.0f, -5.0f, 0.0f));
-    shader->set_vec3("pointLight.ambient",  glm::vec3(0.05f));
-    shader->set_vec3("pointLight.diffuse",  glm::vec3(1.0f, 0.9f, 0.7f));
+    shader->set_vec3("pointLight.ambient", glm::vec3(0.05f));
+    shader->set_vec3("pointLight.diffuse", glm::vec3(1.0f, 0.9f, 0.7f));
     shader->set_vec3("pointLight.specular", glm::vec3(1.0f, 0.9f, 0.8f));
     shader->set_float("pointLight.constant", 1.0f);
     shader->set_float("pointLight.linear", 0.0001f);
@@ -184,19 +185,19 @@ void MainController::update_camera() {
     float dt = platform->dt();
     if (platform->key(engine::platform::KEY_W)
                 .state() == engine::platform::Key::State::Pressed) {
-        camera->move_camera(engine::graphics::Camera::Movement::FORWARD, dt+0.5);
+        camera->move_camera(engine::graphics::Camera::Movement::FORWARD, dt + 0.5);
     }
     if (platform->key(engine::platform::KEY_S)
                 .state() == engine::platform::Key::State::Pressed) {
-        camera->move_camera(engine::graphics::Camera::Movement::BACKWARD, dt+0.5);
+        camera->move_camera(engine::graphics::Camera::Movement::BACKWARD, dt + 0.5);
     }
     if (platform->key(engine::platform::KEY_A)
                 .state() == engine::platform::Key::State::Pressed) {
-        camera->move_camera(engine::graphics::Camera::Movement::LEFT, dt+0.5);
+        camera->move_camera(engine::graphics::Camera::Movement::LEFT, dt + 0.5);
     }
     if (platform->key(engine::platform::KEY_D)
                 .state() == engine::platform::Key::State::Pressed) {
-        camera->move_camera(engine::graphics::Camera::Movement::RIGHT, dt+0.5);
+        camera->move_camera(engine::graphics::Camera::Movement::RIGHT, dt + 0.5);
     }
     auto mouse = platform->mouse();
     camera->rotate_camera(mouse.dx, mouse.dy);
@@ -206,6 +207,5 @@ void MainController::update_camera() {
 void MainController::update() {
     update_camera();
 }
-
 
 }// namespace app
