@@ -28,9 +28,9 @@ void GUIController::draw() {
     ImGui::Begin("Debug Controls");
 
     if (ImGui::CollapsingHeader("Bloom Settings", ImGuiTreeNodeFlags_DefaultOpen)) {
-        ImGui::DragFloat("Bloom Intensity", &bloom_controller->bloom_strength, 0.1f, 0.0f, 50.0f);
-        ImGui::DragFloat("Exposure", &bloom_controller->exposure, 0.1f, 0.1f, 20.0f);
-        ImGui::DragInt("Bloom Passes", &bloom_controller->bloom_passes, 1, 0, 50);
+        ImGui::DragFloat("Bloom Intensity", &bloom_controller->bloom_strength, 0.1f, 0.0f, 5.0f);
+        ImGui::DragFloat("Exposure", &bloom_controller->exposure, 0.1f, 0.1f, 3.0f);
+        ImGui::DragInt("Bloom Passes", &bloom_controller->bloom_passes, 1, 0, 5);
     }
 
     ImGui::Separator();
