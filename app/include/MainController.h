@@ -1,5 +1,5 @@
 //
-// Created by ndobrosavljevic on 7.10.25..
+// Created by zpantovic on 7.10.25..
 //
 
 #ifndef MATF_RG_PROJECT_MAINCONTROLLER_H

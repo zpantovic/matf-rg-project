@@ -11,8 +11,11 @@
 #include "engine/platform/PlatformController.hpp"
 #include "engine/resources/ResourcesController.hpp"
 #include "spdlog/spdlog.h"
+#include "engine/graphics/BloomController.h"
 
 namespace app {
+engine::graphics::BloomController *bloom_controller;
+static bool b_pressed = false;
 
 class MainPlatformEventObserver : public engine::platform::PlatformEventObserver {
 public:
@@ -34,6 +37,8 @@ void MainController::initialize() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
     platform->register_platform_event_observer(std::make_unique<MainPlatformEventObserver>());
     engine::graphics::OpenGL::enable_depth_testing();
+    bloom_controller = get<engine::graphics::BloomController>();
+    bloom_controller->bloom_setup();
 }
 
 bool MainController::loop() {
@@ -41,6 +46,16 @@ bool MainController::loop() {
     if (platform->key(engine::platform::KeyId::KEY_ESCAPE).is_down()) {
         return false;
     }
+
+    if (platform->key(engine::platform::KeyId::KEY_B).is_down()) {
+        if (!b_pressed) {
+            bloom_controller->toggle_bloom();
+            b_pressed = true;
+        }
+    } else {
+        b_pressed = false;
+    }
+
     return true;
 }
 
@@ -144,11 +159,16 @@ void MainController::draw_skybox() {
 
 void MainController::draw() {
     //clear buffers color buffer i depth buffer
+    if (b_pressed) {
+        bloom_controller->prepare_hdr();
+    }
     draw_babyoda();
     draw_island();
     draw_svbrod();
     draw_skybox();
-    //swapBuffers, kako bi sve sto smo nacrtali poslali na ekran.
+    if (b_pressed) {
+        bloom_controller->finalize_bloom();
+    }//swapBuffers, kako bi sve sto smo nacrtali poslali na ekran.
 }
 void MainController::end_draw() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
